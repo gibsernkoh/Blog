@@ -1,0 +1,235 @@
+@import 'settings';
+
+// Framework
+
+html, body{
+    font-size: $body_font_size;
+    padding: 0; margin: 0; height: 100%; width: 100%;}
+*[class*='ant-col-'],
+*{box-sizing: border-box;}
+a{&, &:visited, &:focus, &:hover{text-decoration: none; color: inherit;}}
+a, .btn, button, label, *[onclick], *[class*="next"], *[class*="prev"] {cursor: pointer;}
+.img-responsive{max-width: 100%; height: auto;}
+
+$ignore_class: fa custom-font;
+$latos: '';
+@each $c in $ignore_class {
+    $latos: $latos +':not(.'+$c+')';}
+
+*#{$latos}{font-family: 'Lato', sans-serif;}
+
+h1 {&,&.ant-typography{font-size: 2rem; margin-bottom: 1.8rem;}}
+h2 {&,&.ant-typography{font-size: 1.8rem; margin-bottom: 1.6rem;}}
+h3 {&,&.ant-typography{font-size: 1.6rem; margin-bottom: 1.4rem;}}
+h4 {&,&.ant-typography{font-size: 1.4rem; margin-bottom: 1.2rem;}}
+h5 {&,&.ant-typography{font-size: 1.2rem; margin-bottom: 1rem;}}
+h6 {&,&.ant-typography{font-size: 1rem; margin-bottom: .8rem;}}
+h1, h2, h3{ 
+    &.ant-typography{font-weight: 500;} 
+    & > small{font-size: 70%;}}
+
+h1, h2, h3, h4,h5, h6{
+    & > *{display: block;}
+    & > small{font-weight: 300;}}
+    
+.text-left{text-align: left; justify-content: flex-start;}
+.text-right{text-align: right; justify-content: flex-end;}
+.text-center{text-align: center; justify-content: center;}
+
+$aligns: left center right;
+@each $align in $aligns{
+    @media (min-width: 1600px){.text-xxl-#{$align} {text-align: #{$align}}}
+    @media (min-width: 1200px){.text-xl-#{$align} {text-align: #{$align}}}
+    @media (min-width: 992px){.text-lg-#{$align} {text-align: #{$align}}}
+    @media (min-width: 768px){.text-md-#{$align} {text-align: #{$align}}}
+    @media (min-width: 576px){.text-sm-#{$align} {text-align: #{$align}}}
+    @media (max-width: 575px){.text-xs-#{$align} {text-align: #{$align}}}
+    @media (max-width: 320px){.text-xxs-#{$align} {text-align: #{$align}}}
+}
+
+.container{
+    width: 100%;
+    padding: 0px $container_gutter;
+    margin: auto;
+    
+    display: flex;
+    flex-wrap: wrap;
+
+    .max-offset{
+        margin-left: -$container_gutter;
+        margin-right: -$container_gutter;
+        width: calc(100% + #{$container_gutter*2});}
+
+    @media (min-width: 1201px) {max-width: 80%;} 
+    @media (min-width: 992px) {max-width: 90%;}
+    @media (min-width: 768px) {max-width: 95%;
+    .max-offset{
+        $offset: 2.7%;
+        margin-left: calc(-#{$offset} - #{$container_gutter});
+        margin-right: calc(-#{$offset} - #{$container_gutter});
+        width: calc(#{100% + $offset * 2} + #{$container_gutter * 2});}}
+
+    .innerContainer{width: 100%;}
+}
+
+.static{position: static;} // IE11 don't support position initial
+.relative{position: relative;}
+.absolute{
+    position: absolute; 
+    &.center-center{
+        top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    &.left-center{
+        top: 50%; left: 0px; transform: translateY(-50%);}
+    &.right-center{
+        top: 50%; right: 0px; left: auto; transform: translateY(-50%);}
+}
+
+#root{width: 100%; height: 100%; & > *{width: 100%; min-height: 100%; display: flex; flex-direction: column; }}
+
+$columns: 1 2 3 4 5 6 7 8 9 10 11 12;
+
+.flex-wrap{
+    width: calc(100% + #{$item_gutter});
+    margin-left: -$item_gutter/2;
+    margin-right: -$item_gutter/2;
+
+    display: flex;
+    flex-wrap: wrap;
+    & > *{
+        flex: 0 0 auto; 
+        padding: $item_gutter/2; }
+
+    &:before, &:after{ display: none;}
+    @each $col in $columns{
+        @media (min-width: 1600px){
+            &.xxl-#{$col} > *{width: calc(100% / #{$col})}}
+        @media (min-width: 1200px){
+            &.xl-#{$col} > *{width: calc(100% / #{$col})}}
+        @media (min-width: 992px){
+            &.lg-#{$col} > *{width: calc(100% / #{$col})}}
+        @media (min-width: 768px){
+            &.md-#{$col} > *{width: calc(100% / #{$col})}}
+        @media (min-width: 576px){
+            &.sm-#{$col} > *{width: calc(100% / #{$col})}}
+        @media (max-width: 575px){
+            &.xs-#{$col} > *{width: calc(100% / #{$col})}}
+        @media (max-width: 320px){
+            &.xxs-#{$col} > *{width: 100%;}}
+    }
+}
+
+.section{
+    @media (min-width: 1600px){padding-top: 5.3571rem;padding-bottom: 5.3571rem;}
+    @media (min-width: 1200px){padding-top: 5.3571rem;padding-bottom: 5.3571rem;}
+    @media (min-width: 992px){padding-top: 5.3571rem;padding-bottom: 5.3571rem;}
+    @media (min-width: 768px){padding-top: 4.3571rem;padding-bottom: 4.3571rem;}
+    @media (min-width: 576px){padding-top: 3.3571rem;padding-bottom: 3.3571rem;}
+    @media (max-width: 575px){padding-top: 2.3571rem;padding-bottom: 2.3571rem;}
+    @media (max-width: 320px){padding-top: 2.3571rem;padding-bottom: 2.3571rem;}
+}
+
+
+// End Framework
+
+header{ 
+    border-top: 2px solid $primary_color;
+    font-size: .9rem;
+    padding: .5rem 0px .7em;
+    box-shadow: 0px 0px 2px 1px rgba($fifth_color, 0.4);
+    background: white;
+    z-index: 2;
+    .container{flex-wrap: nowrap; justify-content: space-between;}
+    a.header-icon{ 
+        font-size: 1.8em;
+        font-weight: 700; 
+        text-transform: uppercase;
+        color: $primary_color; 
+        text-shadow: 0px 3px $secondary_color, 0px 5px $primary_color;
+        padding-right: 1em;
+        display: flex;
+        align-items: center; 
+        margin-bottom: -.7em;padding-bottom: .7em;}
+    div.header-menu{
+        flex: 0 1 auto;
+        overflow: hidden;
+        ul{
+            text-align: right;
+            border: 0px;
+
+            a{ 
+                color: $primary_color $i; 
+                text-transform: uppercase;
+                font-weight: 700;
+                font-size: 1.1em; 
+                text-shadow: 3px 3px rgba($secondary_color, 0.6);
+                position: relative;
+                top: 0;
+                transition: all .4s;}
+
+            li{border-bottom: 0px $i;
+                &:hover,
+                &.ant-menu-item-selected { 
+                    & > a{
+                        top: -2px $i;
+                        text-shadow: 6px 7px rgba($tertiary_color, 0.3) $i;}}}}}
+} // End Header
+
+footer{
+    background: $primary_color;
+    color: white; 
+    padding: .5em 0px;
+    font-size: .9rem;
+    font-weight: 300;
+    border-bottom: 2px solid $tertiary_color;
+}
+
+#content{
+    flex: 1 1 auto;
+    .sample-slider-area{
+        background: $shadow_medium;
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        &::after{
+            content: '';
+            padding-top: 30%;
+            display: block;
+            @media (max-width: 767px){padding-top: 80%;}
+            @media (max-width: 767px) and (orientation: landscape){
+                padding-top: 47%; }
+            @media (max-width: 575px){padding-top: 130%;}
+            @media (max-width: 575px) and (orientation: landscape){
+                padding-top: 46%; }
+        }}
+}
+
+.bookmark{
+    border-top: 1px solid $primary_color;
+    .bookmark-grid{
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr auto auto;
+        grid-template-areas: 
+            'title image1 image2'
+            'description image1 image2';
+            h2{
+                grid-area: title;}
+            img{
+                max-width: 280px;}
+            #image1{
+                grid-area: image1;}
+            #image2{
+                grid-area: image2;}
+            .bookmark-description{
+                grid-area: description;}
+        @media (max-width: 767px) {
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas: 
+                'title title'
+                'image1 image2'
+                'description description';
+            img{width: 100%; max-width: none;}
+            .bookmark-description{
+                padding: 1rem 0px;}
+        }}
+}
